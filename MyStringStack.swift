@@ -9,11 +9,13 @@ class MyStringStack {
         stack = []
     }
 
+    // Adds a number to the top of the stack.
     func push(string: String) {
         stack.append(string)
         print("Added \(string) to top of the stack.")
     }
 
+    // Removes the number at the top of the stack.
     func pop() {
         if stack.isEmpty {
             print("\nThe stack is empty.")
@@ -24,15 +26,38 @@ class MyStringStack {
             print("\nRemoved \(topString) from the top of the stack.")
         }
     }
+
+    // Finds and displays the number at the top of the stack.
+    func peek() {
+        if stack.isEmpty {
+            print("\nThe stack is empty.")
+        } else {
+            let topIndex = stack.count - 1
+            let topString = stack[topIndex]
+            print("\nThe string at the top of the stack is: \(topString)")
+        }
+    }
+
+    // Clears the stack of all its numbers.
+    func clear() {
+        if stack.isEmpty {
+            print("\nThe stack is empty.")
+        } else {
+            stack = []
+            print("\nThe stack has been cleared.")
+        }
+    }
 }
 
 // Creating object
 let myStack = MyStringStack()
 
 while true {
-    print("\nDo you wish to use push or pop (enter q to quit)? ", terminator: "")
+    print("\nDo you wish to use push, pop, peek or clear"
+         + "(enter q to quit)? ", terminator: "")
     let userMethod = readLine()
 
+    // Push method
     if userMethod!.uppercased == "PUSH" {
         midloop: while true {
             print("\nWhat string do you wish to add? ", terminator: "")
@@ -53,11 +78,25 @@ while true {
                 }
             }
         }
+
+    // Pop method
     } else if userMethod!.uppercased == "POP" {
         myStack.pop()
+
+    // Peek method
+    } else if userMethod!.uppercased == "PEEK" {
+        myStack.peek()
+
+    // Clear method
+    } else if userMethod!.uppercased == "CLEAR" {
+        myStack.clear()
+
+    // Quits the program
     } else if userMethod!.uppercased == "Q" {
         break
+
+    // If the user does not enter a valid input
     } else {
-        print("\nPlease enter either push, pop or q to quit.")
+        print("\nPlease enter either push, pop, peek, clear or q to quit.")
     }
 }
